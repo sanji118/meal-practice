@@ -33,7 +33,7 @@ const displayCategories = (categories) =>{
         }
         categoryCard.innerHTML = `
             <div>
-                <img src=${category.strCategoryThumb} class ="w-fit h-full">
+                <img src=${category.strCategoryThumb} class ="w-fit h-full rounded-lg">
             </div>
             <div class="card-body w-3/4 py-auto md:p-6">
                 <h4 class="card-title">${category.strCategory}</h4>
@@ -42,7 +42,7 @@ const displayCategories = (categories) =>{
                     ${moreText ? `<span id="dots">...</span><span id="moreText" style="display: none;">${moreText}</span>` : ''}
                     ${seeMoreButton}
                 </div>
-                <div  class="card-actions justify-start"><button class=" text-[#FFC107]">View Details</button></div>
+                <div  class="card-actions justify-start"><button id="view-details-btn" onclick="displayDetails(${category.id})" class=" text-[#FFC107]">View Details</button></div>
             </div>
         `;
         categoryCard.classList = 'card card-side border border-[#100F0F1A] rounded-lg';
@@ -68,4 +68,16 @@ const toggleText = (event, btn) =>{
         } 
     }
     
+}
+
+
+const loadDetails = () =>{
+    fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${idMeal}`)
+        .then(res => res.json())
+        .then(data => displayCategories(data.meals))
+        .catch(err => console.log('error is fetching:', err))
+}
+
+const displayDetails = (meals) =>{
+    console.log(meals);
 }
