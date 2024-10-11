@@ -19,15 +19,16 @@
             background-repeat: no-repeat;
             background-size: 100% 100%;
         }
+        
     </style>
 </head>
-<body>
+<body class="poppins overflow-x-hidden">
     <header>
         <nav class="p-5 md:p-6 flex justify-between items-center">
             <img src="images/Tasty_HUT.png" class=" h-5">
             <button class="btn bg-[#FFC107] text-sm md:text-lg">Sign Up</button>
         </nav>
-        <section class="banner mb-7">
+        <section class="banner mb-7 overflow-x-hidden">
             <div class="bg-[#100f0f79]">
                 <div class="mx-auto w-3/4 text-center p-5 md:p-28">
                     <h1 class="text-2xl md:text-5xl lg:text-6xl text-white font-extrabold">Taste Our Delicious Best Foods</h1>
@@ -44,7 +45,7 @@
                             d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z"
                             clip-rule="evenodd" />
                         </svg>
-                        <input type="text" class="grow" placeholder="Search any food" />
+                        <input type="text" class="grow text-sm md:text-lg" placeholder="Search any food" />
                         <button class="btn bg-[#FFC107]">Search</button>
                     </label>
                 </div> 
@@ -52,15 +53,18 @@
         </section>
     </header>
     <main>
-        <section>
-            <h3 class="font-bold text-2xl md:text-4xl text-center">Your Favourite Food</h3>
+        <section class="my-10 overflow-x-hidden">
+            <h3 class="font-bold text-2xl md:text-4xl text-center">Select Your Category</h3>
             <div id="categoryContainer">
 
             </div>
+        </section>
+        <section class="overflow-x-hidden">
+            <h3 class="font-bold text-2xl md:text-4xl text-center">Your Favourite Food</h3>
             <div class="text-center mb-10"><button id="show-all-btn" class="btn bg-[#FFC107]" style="display: none;">Show All</button></div>
             
         </section>
-        <section>
+        <section class="overflow-x-hidden">
            <!-- Open the modal using ID.showModal() method -->
             <button class="btn hidden" onclick="viewDetailsModal.showModal()">open modal</button>
             <dialog id="viewDetailsModal" class="modal modal-bottom sm:modal-middle">
@@ -76,7 +80,7 @@
             </dialog>
         </section>
     </main>
-    <footer class="bg-[#FFC1070D] p-5 md:p-28 flex flex-col md:grid md:grid-cols-2 md:gap-8 lg:flex-row lg:justify-between">
+    <footer class="bg-[#FFC1070D] p-5 md:p-28 flex flex-col md:grid md:grid-cols-2 md:gap-8 lg:flex-row lg:justify-between overflow-x-hidden">
         <div class="opacity-80">
             <h3 class="font-semibold text-2xl">Section</h3>
             <ul>
@@ -120,5 +124,6 @@
         </div>
     </footer>
     <script src="index.js"></script>
+    <script src="fetch.js"></script>
 </body>
 </html>
