@@ -57,8 +57,68 @@
             <div id="categoryContainer">
 
             </div>
+            <div class="text-center mb-10"><button id="show-all-btn" class="btn bg-[#FFC107]" style="display: none;">Show All</button></div>
+            
+        </section>
+        <section>
+           <!-- Open the modal using ID.showModal() method -->
+            <button class="btn hidden" onclick="viewDetailsModal.showModal()">open modal</button>
+            <dialog id="viewDetailsModal" class="modal modal-bottom sm:modal-middle">
+            <div class="modal-box">
+                <div id="modal-content"></div>
+                <div class="modal-action">
+                <form method="dialog">
+                    <!-- if there is a button in form, it will close the modal -->
+                    <button class="btn">Close</button>
+                </form>
+                </div>
+            </div>
+            </dialog>
         </section>
     </main>
+    <footer class="bg-[#FFC1070D] p-5 md:p-28 flex flex-col md:grid md:grid-cols-2 md:gap-8 lg:flex-row lg:justify-between">
+        <div class="opacity-80">
+            <h3 class="font-semibold text-2xl">Section</h3>
+            <ul>
+                <li>Home</li>
+                <li>Features</li>
+                <li>Pricing</li>
+                <li>FAQs</li>
+                <li>About</li>
+            </ul>
+        </div>
+        <div class="opacity-80">
+            <h3 class="font-semibold text-2xl">Section</h3>
+            <p>
+                UIUX Design <br>
+                Product Design <br>
+                Back End Developer <br>
+                Front End Developer
+            </p>
+        </div>
+        <div class="opacity-80">
+            <h3  class="font-semibold text-2xl">Resource</h3>
+            <ul>
+                <li>FAQ</li>
+                <li>Support</li>
+                <li>Privacy Policy</li>
+                <li>Terms of Service</li>
+            </ul>
+        </div>
+        <div>
+            <h3 class="font-semibold text-2xl opacity-80">
+                Subscribe to our newsletter
+            </h3>
+            <p class="opacity-80">There are many variations of passages of available, but the majority have suffered</p>
+            <div class="flex gap-5 py-4">
+                <label class="input input-bordered flex items-center gap-2">
+                    <input type="text" class="grow" placeholder="Enter your Email" />
+                </label>
+                <button class="btn bg-[#FFC107]">Subscribe</button>
+            </div>
+            
+        </div>
+    </footer>
     <script src="index.js"></script>
 </body>
 </html>

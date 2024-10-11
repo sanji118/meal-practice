@@ -1,14 +1,4 @@
-//card html
-/**<div class="">
-                <div>
-                    <img src="" alt="">
-                </div>
-                <div>
-                    <h4 class="font-semibold text-2xl"></h4>
-                    
-                </div>
-            </div> */
-
+//category container create
 const loadCategories = () =>{
     fetch('https://www.themealdb.com/api/json/v1/1/categories.php')
         .then(res => res.json())
@@ -17,8 +7,12 @@ const loadCategories = () =>{
 }
 loadCategories();
 const displayCategories = (categories) =>{
-    categories.forEach(category =>{
-        const categoryContainer = document.getElementById('categoryContainer');
+    const showBtn = document.getElementById('show-all-btn');
+    const categoryContainer = document.getElementById('categoryContainer');
+    const visibleCategories = categories.slice(0, 6);
+    const hiddenCategories = categories.slice(6);
+    const createCard = (category) =>{
+        
         const categoryCard = document.createElement('div');
         let descriptionText = category.strCategoryDescription;
         let slicedDescription = '';
@@ -42,15 +36,60 @@ const displayCategories = (categories) =>{
                     ${moreText ? `<span id="dots">...</span><span id="moreText" style="display: none;">${moreText}</span>` : ''}
                     ${seeMoreButton}
                 </div>
-                <div  class="card-actions justify-start"><button id="view-details-btn" onclick="displayDetails(${category.id})" class=" text-[#FFC107]">View Details</button></div>
+                <div  class="card-actions justify-start"><button id="view-details-btn" onclick="displayDetails()" class=" text-[#FFC107]">View Details</button></div>
             </div>
         `;
         categoryCard.classList = 'card card-side border border-[#100F0F1A] rounded-lg';
-        categoryContainer.appendChild(categoryCard);
         categoryContainer.classList = 'grid grid-cols-2 gap-6 m-5 md:m-8';
-    })
-}
+        return categoryCard;
+    }
 
+
+    
+    visibleCategories.forEach(category =>{
+        const card = createCard(category);
+        categoryContainer.appendChild(card);
+    });
+
+
+
+    if(hiddenCategories.length > 0){
+        showBtn.style.display = 'inline-block';
+        hiddenCategories.forEach(category =>{
+            const card = createCard(category);
+            card.style.display = 'none';
+            card.classList.add('hidden-category');
+            categoryContainer.appendChild(card);
+        });
+        showBtn.addEventListener('click', () => loadAllCategories(event, ))
+    }else{
+        showBtn.innerText = "Show less";
+    }
+}
+//show all button dynamic
+const loadAllCategories = (event, ) =>{
+    event.preventDefault();
+    const categoryContainer = document.getElementById('categoryContainer');
+    const hiddenCards = categoryContainer.querySelectorAll('.hidden-category');
+    const showBtn = document.getElementById('show-all-btn');
+
+
+    hiddenCards.forEach(card =>{
+        if (card.style.display === 'none') {
+            card.style.display = 'block';
+        } else {
+            card.style.display = 'none';
+        }
+    }); 
+
+
+    if (showBtn.innerText === "Show All") {
+        showBtn.innerText = "Show Less";
+    } else {
+        showBtn.innerText = "Show All";
+    }
+}
+//description see more see less functionality
 const toggleText = (event, btn) =>{
     event.preventDefault();
     const parentDiv = btn.parentElement;
@@ -70,14 +109,20 @@ const toggleText = (event, btn) =>{
     
 }
 
-
+//details modal create
 const loadDetails = () =>{
-    fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${idMeal}`)
+    fetch('www.themealdb.com/api/json/v1/1/lookup.php?i=52772')
         .then(res => res.json())
-        .then(data => displayCategories(data.meals))
-        .catch(err => console.log('error is fetching:', err))
+        .then(data => displayDetails(data.id))
+        .catch(err => console.log('error is:', err))
 }
+loadDetails();
+const displayDetails = (id) =>{
+    console.log(id);
+    const modalContent = document.getElementById('modal-content');
+    const viewDetails = document.getElementById('view-details-btn');
+    modalContent.innerHTML = `
 
-const displayDetails = (meals) =>{
-    console.log(meals);
+    `;
+    document.getElementById('viewDetailsModal').showModal()
 }
