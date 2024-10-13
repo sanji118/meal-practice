@@ -59,12 +59,12 @@
 
             </div>
         </section>
-        <section id="displayAllFoods"></section>
-        <section id="latest-meal-container">
-            <h3 class="font-bold text-2xl md:text-4xl text-center">Latest Meal</h3>
+        <section id="displayAllFoods">
+
         </section>
         <section class="overflow-x-hidden">
             <h3 class="font-bold text-2xl md:text-4xl text-center">Your Favourite Food</h3>
+            <div id="favFood-container"></div>
             <div class="text-center mb-10"><button id="show-all-btn" class="btn bg-[#FFC107]" style="display: none;">Show All</button></div>
             
         </section>
@@ -74,11 +74,14 @@
             <button class="btn hidden" onclick="viewDetailsModal.showModal()">open modal</button>
             <dialog id="viewDetailsModal" class="modal modal-bottom sm:modal-middle">
             <div class="modal-box">
+                <form method="dialog">
+                    <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                </form>
                 <div id="modal-content"></div>
                 <div class="modal-action">
                 <form method="dialog">
                     <!-- if there is a button in form, it will close the modal -->
-                    <button class="btn">Close</button>
+                    <button class="btn bg-[#e05252]">Close</button>
                 </form>
                 </div>
             </div>
@@ -129,6 +132,5 @@
         </div>
     </footer>
     <script src="index.js"></script>
-    <script src="fetch.js"></script>
 </body>
 </html>
