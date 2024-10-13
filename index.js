@@ -193,6 +193,11 @@ const displayFavFoods = (meals) =>{
         favFoodContainer.innerHTML = '<p>No meals Found!!!';
         showBtn.style.display = 'none';
     }
+
+    const searchBox = document.getElementById('search-box');
+    searchBox.addEventListener('keyup', (e)=>{
+        loadMeals(e.target.value);
+    })
     
 };
 //toggle between show all and show less
@@ -271,6 +276,15 @@ const displayNoModal = () =>{
         <div><img src="https://img.icons8.com/?size=100&id=bcaSqlylrpKy&format=png&color=000000"><p class="font bold flex justify-center items-center py-5">NO DETAILS FOUND</p></div>
     `;
     document.getElementById('viewDetailsModal').showModal();
+}
+
+//search box dynamic
+const loadMeals = (strMeal = "") =>{
+    console.log(strMeal);
+    fetch(`http://www.themealdb.com/api/json/v1/1/search.php?s=${strMeal}`)
+        .then(res => res.json())
+        .then(data => displayFavFoods(data.meals))
+        .catch(err => {console.log('error is:', err);})
 }
 
 
